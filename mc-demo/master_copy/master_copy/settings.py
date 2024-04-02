@@ -137,20 +137,11 @@ EMAIL_HOST = 'smtp.gmail.com'  # Your SMTP host
 EMAIL_PORT = 587  # Your SMTP port
 EMAIL_USE_TLS = True  # TLS/SSL settings (use True for TLS, False for SSL, None for no encryption)
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'dhamotharan2107@gmail.com'  # Your email address
-EMAIL_HOST_PASSWORD = 'btuhkwmuxgqxflfp'  # Your email password
+EMAIL_HOST_USER = 'saashdha.team@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'pvhpwqzgilxrqizl'  # Your email password
 DEFAULT_FROM_EMAIL = 'dhamotharan2107@gmail.com'  # The email address to use for the 'From' header
 
 
 
 
-
-#
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
-# EMAIL_HOST_USER = 'dhamu.lmark@gmail.com'
-# EMAIL_HOST_PASSWORD = 'Karhil@2107'
 
