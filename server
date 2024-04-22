@@ -1,1 +1,188 @@
+const express = require('express');
+const cors = require('cors');
 
+const app = express();
+
+// Enable CORS middleware for a specific origin (or use '*' for all origins)
+app.use(cors({
+    origin: 'http://127.0.0.1:8000' // Specify your frontend application's URL here
+}));
+
+// Define broker data
+const brokers = [
+    { name: "4xCube" ,
+    servers: [
+        "4xCube Trail1",]},
+    { name: "AAFX Trading" },
+    { name: "AccentForex" },
+    { name: "Admiral Markets" },
+    { name: "AETOS" },
+    { name: "Alfa-Forex" },
+    { name: "Alpari" },
+    { name: "Amana Capital" },
+    { name: "AMarkets" },
+    { name: "ATFX" },
+    { name: "AvaTrade" },
+    { name: "Axi" },
+    { name: "BlackBull Markets" },
+    { name: "Blackwell Global" },
+    { name: "Blueberry Markets" },
+    { name: "BullsEye Markets" },
+    { name: "City Index" },
+    { name: "Dukascopy" },
+    { name: "EagleFX" },
+    { name: "easyMarkets" },
+    { name: "Eightcap" },
+    { name: "eToro" },
+    { name: "EverFX" },
+    {
+        name: "Exness",
+        servers: [
+            "Exness Trail1",
+            "Exness Trail2",
+            "Exness Trail3",
+            "Exness Trail4",
+            "Exness Trail5",
+            "Exness Trail6",
+            "Exness Trail7",
+            "Exness Trail8",
+            "Exness Real1",
+            "Exness Real2",
+            "Exness Real3",
+            "Exness Real4",
+            "Exness Real5",
+            "Exness Real6",
+            "Exness Real7",
+            "Exness Real8",
+            "Exness Real9"
+        ]
+    },
+    { name: "FBS" },
+    { name: "FIBO Group" },
+    { name: "FinmaxFX" },
+    { name: "FirewoodFX" },
+    { name: "Forex Club (also known as Libertex)" },
+    { name: "Forex Optimum" },
+    { name: "ForexChief" },
+    { name: "ForexMart" },
+    { name: "ForexTime (FXTM)" },
+    { name: "Fort Financial Services" },
+    { name: "FP Markets" },
+    { name: "FreshForex" },
+    { name: "Fullerton Markets" },
+    { name: "FXChoice" },
+    { name: "FXCL Markets" },
+    { name: "FXCM" },
+    { name: "FXFlat" },
+    { name: "FXGiants" },
+    { name: "FXOpen" },
+    { name: "FXPrimus" },
+    { name: "FxPro" },
+    { name: "Gerchik & Co" },
+    { name: "GO Markets" },
+    { name: "Hantec Markets" },
+    { name: "HF Markets (HotForex)" },
+    { name: "HotForex" },
+    { name: "HYCM (formerly known as HY Markets)" },
+    { name: "IC Markets" },
+    { name: "ICM Capital" },
+    { name: "IFC Markets" },
+    { name: "InvestMarkets" },
+    { name: "Investous" },
+    { name: "IronFX" },
+    { name: "JFD Bank" },
+    { name: "JustForex" },
+    { name: "Key to Markets" },
+    { name: "Land-FX" },
+    { name: "LegacyFX" },
+    { name: "LiteForex" },
+    { name: "LMFX" },
+    { name: "Markets.com" },
+    { name: "MTrading" },
+    { name: "Multibank Group" },
+    { name: "NordFX" },
+    { name: "NSBroker" },
+    { name: "NSFX" },
+    { name: "Octa Markets" },
+    { name: "OctaFX" },
+    { name: "One Financial Markets" },
+    { name: "Orbex" },
+    { name: "OspreyFX" },
+    { name: "Pacific Union" },
+    { name: "RoboForex" },
+    { name: "RoboMarkets" },
+    { name: "SquaredFinancial" },
+    { name: "SuperForex" },
+    { name: "Swiss Markets" },
+    { name: "Swissquote" },
+    { name: "TeleTrade" },
+    { name: "ThinkMarkets" },
+    { name: "Tickmill" },
+    { name: "Tifia" },
+    { name: "TigerWit" },
+    { name: "TIO Markets" },
+    { name: "Trade360" },
+    { name: "Traders Trust" },
+    { name: "Trading 212" },
+    { name: "TrioMarkets" },
+    { name: "Turnkey Forex" },
+    { name: "UFX" },
+    { name: "Uniglobe Markets" },
+    { name: "USGFX" },
+    { name: "Vantage FX" },
+    { name: "Varianse" },
+    { name: "Velocity Trade" },
+    { name: "Vinson Financials" },
+    { name: "Weltrade" },
+    { name: "Windsor Brokers" },
+    { name: "WizeForex" },
+    { name: "World Forex" },
+    { name: "XGLOBAL Markets" },
+    { name: "XTB" },
+    { name: "Yadix" }
+];
+
+// API endpoint to get brokers
+app.get('/api/brokers', (req, res) => {
+    res.json(brokers);
+});
+
+// API endpoint to get servers for a specific broker
+app.get('/api/brokers/:brokerName/servers', (req, res) => {
+    const { brokerName } = req.params;
+    const broker = brokers.find(broker => broker.name === brokerName);
+    if (broker && broker.servers) {
+        res.json(broker.servers);
+    } else {
+        res.status(404).json({ error: "Broker not found or does not have servers" });
+    }
+});
+
+// Define account details data
+const accounts = [
+    { 
+        accountType: "MT4",
+        accountNumber: "123123",
+        accountName: "Demo",
+        password: "Password@123",
+        server: "Exness Trail1"
+    },
+    { 
+        accountType: "MT5",
+        accountNumber: "123121",
+        accountName: "Demo1",
+        password: "Password@121",
+        server: "Exness Trail5"
+    }
+];
+
+// API endpoint to get account details
+app.get('/api/accountDetails', (req, res) => {
+    res.json(accounts);
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
